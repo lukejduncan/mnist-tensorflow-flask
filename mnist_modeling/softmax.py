@@ -74,3 +74,4 @@ def train(batch_size=100, epochs=1000, learning_rate = 0.5, path_test_label='dat
   
   # Print model stats
   print("Accuracy: %f" % sess.run(accuracy, feed_dict={x: mnist_test_img, y_: mnist_test_label}))
+  sess.close()
