@@ -7,6 +7,7 @@ from __future__ import print_function
 import idx2numpy
 import numpy as np
 import tensorflow as tf
+import matplotlib.pyplot as plt
 
 # LUKE TODO you can probably live without print_function
 
@@ -17,6 +18,8 @@ path_test_label = '../data/t10k-labels-idx1-ubyte'
 learning_rate = 0.5
 epochs = 1000
 batch_size = 100
+visualize_model = True
+visualize_path = ''
 
 def reshape_labels(labels):
   reshape = np.zeros((len(labels), 10))
@@ -85,3 +88,16 @@ for _ in range(epochs):
 # Print model stats
 print("Accuracy: %f" % sess.run(accuracy, feed_dict={x: mnist_test_img, y_: mnist_test_label}))
 
+# positive coefficients are shown in blue
+# while negative coefficients are shown in red
+# to do this we need to normalize, scale and shift
+# into the appropriate rgb representation
+if visualize_model:
+  model = np.swapaxes(sess.run(W),0,1)
+  _, ax = plt.subplots(3,3)
+  ax = ax.reshape(9)
+  
+  for i in range(9):
+    ax[i].matshow(model[i].reshape(28,28), cmap='RdBu')
+  
+  plt.savefig( visualize_path + '/models.png') 
