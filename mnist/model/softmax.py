@@ -98,7 +98,7 @@ def save(sess, path='model', model_name='default'):
 
 def load(sess, path='model', model_name='default'):
   saver = tf.train.import_meta_graph(path + '/' + model_name + '/model.meta')
-  saver.restore(sess, tf.train.latest_checkpoint(path))
+  saver.restore(sess, tf.train.latest_checkpoint(path + '/' + model_name))
   return tf.get_default_graph()
 
 def accuracy(sess, graph):

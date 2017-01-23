@@ -26,9 +26,9 @@ g = mnist.train(s, g)
 print('Accuracy: %f' % mnist.accuracy(s, g))
 
 mnist.save(s, model_name=model_name)
-print('Saved model to model/')
+print('Saved model to '+ model_path)
 
 mnist.visualize_model(s, g, save=True, path= model_path + '/model.png')
-print('Model visualization saved to model/model.png')
+print('Model visualization saved to ' + model_path + '/model.png')
 
 s.close()
