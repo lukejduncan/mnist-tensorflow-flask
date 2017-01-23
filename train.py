@@ -8,7 +8,7 @@ args = parser.parse_args()
 
 import os, sys, shutil
 import tensorflow as tf
-import mnist_modeling.softmax as mnist
+import mnist.model.softmax as mnist
 
 model_name = args.name
 
