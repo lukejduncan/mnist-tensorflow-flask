@@ -94,10 +94,10 @@ def predict(sess, graph, images):
 
 def save(sess, path='model', model_name='default'):
   saver = tf.train.Saver()
-  saver.save(sess, path + '/' +model_name)
+  saver.save(sess, path + '/' + model_name + '/model')
 
 def load(sess, path='model', model_name='default'):
-  saver = tf.train.import_meta_graph(path + '/' + model_name + '.meta')
+  saver = tf.train.import_meta_graph(path + '/' + model_name + '/model.meta')
   saver.restore(sess, tf.train.latest_checkpoint(path))
   return tf.get_default_graph()
 
