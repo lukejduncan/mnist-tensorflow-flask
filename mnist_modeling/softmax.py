@@ -19,14 +19,14 @@ def reshape_imgs(img):
   count, width, height = img.shape
   return img.reshape(count, width * height)
 
-def init(path_test_label='data/t10k-labels-idx1-ubyte', path_test_img='data/t10k-images-idx3-ubyte', path_train_label='data/train-labels-idx1-ubyte', path_train_img='data/train-images-idx3-ubyte'):
-  global mnist_train_img, mnist_train_label, mnist_test_img, mnist_test_label
-  mnist_train_img = reshape_imgs(idx2numpy.convert_from_file(path_train_img))
-  mnist_train_label = reshape_labels(idx2numpy.convert_from_file(path_train_label))
-  mnist_test_img = reshape_imgs(idx2numpy.convert_from_file(path_test_img))
-  mnist_test_label = reshape_labels(idx2numpy.convert_from_file(path_test_label))
-
-  return tf.Session()
+path_test_label='data/t10k-labels-idx1-ubyte'
+path_test_img='data/t10k-images-idx3-ubyte'
+path_train_label='data/train-labels-idx1-ubyte'
+path_train_img='data/train-images-idx3-ubyte'
+mnist_train_img = reshape_imgs(idx2numpy.convert_from_file(path_train_img))
+mnist_train_label = reshape_labels(idx2numpy.convert_from_file(path_train_label))
+mnist_test_img = reshape_imgs(idx2numpy.convert_from_file(path_test_img))
+mnist_test_label = reshape_labels(idx2numpy.convert_from_file(path_test_label))
 
 def build_graph(learning_rate = 0.5):
   # Create a linear model that is minimizes cross_entropy
@@ -45,7 +45,7 @@ def build_graph(learning_rate = 0.5):
   x = tf.placeholder(tf.float32, [None, 784], name='x')
   W = tf.Variable(tf.zeros([784, 10]), name='W')
   b = tf.Variable(tf.zeros([10]), name='b')
-  y = tf.add(tf.matmul(x, W), b, name='line')
+  y = tf.add(tf.matmul(x, W), b, name='y')
   
   # y_ are the true labels of the training data
   # used for the loss function
@@ -56,7 +56,9 @@ def build_graph(learning_rate = 0.5):
   # Train the model using gradient decent minimizing the loss function
   # Tensorflow implemenets this via symbol-to-symbol back propagation, appending
   # gradient nodes up the DAG rather than directly computing the gradient
-  train_step = tf.train.GradientDescentOptimizer(learning_rate).minimize(loss_function)
+  train_step = tf.train.GradientDescentOptimizer(learning_rate, name='GradientDescent').minimize(loss_function)
+
+  classification = tf.argmax(y, 1, name='classification')
  
   # Measure the accuracy of the model
   correct = tf.equal(tf.argmax(y,1), tf.argmax(y_, 1))
@@ -84,12 +86,38 @@ def train(sess, graph, batch_size=100, epochs=1000):
   
   return tf.get_default_graph()
 
-def get_accuracy(sess, graph):
+def predict(sess, graph, images):
+  x = graph.get_tensor_by_name('x:0')
+  classification = graph.get_tensor_by_name('classification:0')
+  
+  return sess.run(classification, feed_dict={x: images})
+
+def save(sess, path='model', model_name='default'):
+  saver = tf.train.Saver()
+  saver.save(sess, path + '/' +model_name)
+
+def load(sess, path='model', model_name='default'):
+  saver = tf.train.import_meta_graph(path + '/' + model_name + '.meta')
+  saver.restore(sess, tf.train.latest_checkpoint(path))
+  return tf.get_default_graph()
+
+def accuracy(sess, graph):
   x = graph.get_tensor_by_name('x:0')
   y_ = graph.get_tensor_by_name('y_:0')
   accuracy = graph.get_tensor_by_name('accuracy:0')
   
-  print("Accuracy: %f" % sess.run(accuracy, feed_dict={x: mnist_test_img, y_: mnist_test_label}))
+  return sess.run(accuracy, feed_dict={x: mnist_test_img, y_: mnist_test_label})
 
-def close(sess):
-  sess.close()
+def visualize_model(sess, graph, save=False, path='model.png'):
+  W = graph.get_tensor_by_name('W:0')
+  model = np.swapaxes(sess.run(W),0,1)
+  _, ax = plt.subplots(3,3)
+  ax = ax.reshape(9)
+
+  for i in range(9):
+    ax[i].matshow(model[i].reshape(28,28), cmap='RdBu')
+
+  if save:
+    plt.savefig(path)
+  else:
+    plt.show()
