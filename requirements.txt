@@ -17,6 +17,7 @@ pyparsing==2.1.10
 pypng==0.0.18
 python-dateutil==2.6.0
 pytz==2016.10
+requests==2.12.5
 six==1.10.0
 subprocess32==3.2.7
 tensorflow==0.12.1
