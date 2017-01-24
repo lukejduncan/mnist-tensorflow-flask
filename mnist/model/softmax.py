@@ -111,10 +111,10 @@ def accuracy(sess, graph):
 def visualize_model(sess, graph, save=False, path='model.png'):
   W = graph.get_tensor_by_name('W:0')
   model = np.swapaxes(sess.run(W),0,1)
-  _, ax = plt.subplots(3,3)
-  ax = ax.reshape(9)
+  _, ax = plt.subplots(5,2)
+  ax = ax.reshape(10)
 
-  for i in range(9):
+  for i in range(10):
     ax[i].matshow(model[i].reshape(28,28), cmap='RdBu')
 
   if save:
