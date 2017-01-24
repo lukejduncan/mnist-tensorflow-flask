@@ -27,13 +27,19 @@ $ pip install -r requirements.txt
 
 Run the webapp:
 ```shell
-python -m mnist.app.app
+$ ./deploy.sh
 ```
 There are two ways to query the end-point.  
 
 To see results quickly, you can use the tool that randomly selects an image from the mnist test set and issues a query:
 ```shell
-$ TODO
+$ python query.py 
+True Class: 3
+
+HTTP Response:
+{
+  "classification": 3
+}
 ```
 
 Or if you prefer you can directly query it with curl.  The API expects 
@@ -51,4 +57,11 @@ find the visualization of the model at `model/<model_name>/model.png`.  An examp
 To retrain run:
 ```shell
 $ python train --name <model_name>
+```
+
+## Testing
+
+To run the provided unit execute the provided test driver test.sh
+```shell
+$ ./test.sh
 ```
