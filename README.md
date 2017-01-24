@@ -68,7 +68,7 @@ $ python train --name <model_name>
 
 ## Testing
 
-To run the provided unit execute the provided test driver test.sh
+To run the provided unit tests execute the provided test driver test.sh
 ```shell
 $ ./test.sh
 ```
