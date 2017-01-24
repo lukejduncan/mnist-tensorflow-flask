@@ -1,6 +1,6 @@
 # MNIST classifier and web app
 
-This project uses provies a simple MNIST classifer using TensorFlow and served via a
+This project provides a simple MNIST classifer using TensorFlow and served via a
 Flask webapp.
 
 This is a linear softmax classifer very similar to the TensorFlow simple tutorial.  There are some
