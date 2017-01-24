@@ -13,23 +13,28 @@ models, and simple querying of the HTTP end-point.
 ## Quick Start
 In the repo is a pre-trained model that is ready for immediate use.  To do you need to do a environment setup.
 
-Download the mnist data
+### Download the mnist data
 ```shell
 $ ./setup.sh
 ```
 
-Setup your virtual environment:
+### Setup your virtual environment:
 ```shell
 $ virtualenv venv
 $ source venv/bin/activate
 $ pip install -r requirements.txt
 ```
 
-Run the webapp:
+### Run the webapp:
 ```shell
 $ ./deploy.sh
 ```
+
+### Query the endpoint
+
 There are two ways to query the end-point.  
+
+#### Quick Query
 
 To see results quickly, you can use the tool that randomly selects an image from the mnist test set and issues a query:
 ```shell
@@ -41,6 +46,8 @@ HTTP Response:
   "classification": 3
 }
 ```
+
+#### Manual Query
 
 Or if you prefer you can directly query it with curl.  The API expects 
 a POST to /mnist/classify with a param named `img` that is a csv of a flattened mnist compatible
