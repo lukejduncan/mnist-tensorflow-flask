@@ -1,7 +1,7 @@
 # MNIST classifier and web app
 
-This project uses tensorflow to create a simple MNIST classifer using TensorFlow, and served via a
-Flash webapp.
+This project uses provies a simple MNIST classifer using TensorFlow and served via a
+Flask webapp.
 
 This is a linear softmax classifer very similar to the TensorFlow simple tutorial.  There are some
 differences.  For example, the code is organized for re-use and with the intention that a framework
@@ -11,7 +11,7 @@ Additional tools are provided for visualizing the mnist dataset, visualizing the
 models, and simple querying of the HTTP end-point.
 
 ## Quick Start
-In the repo is a pre-trained model that is ready for immediate use.  To do you need to do a environment setup.
+In the repo is a pre-trained model that is ready for immediate use.  To do so you need to do a environment setup.
 
 ### Download the mnist data
 ```shell
@@ -60,7 +60,7 @@ $ curl -X POST -F 'img=0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 ## Retraining the model
 If you'd like to retrain the model you can do so using the provided train.py script.  Models are persisted as a collection 
 of tensorflow files with a shared prefix.  After retraining you can find them at `model/<model_name>/*`.  You'll also 
-find the visualization of the model at `model/<model_name>/model.png`.  An example visualization is below.
+find the visualization of the model at `model/<model_name>/model.png`.
 
 To retrain run:
 ```shell
@@ -69,7 +69,7 @@ $ python train.py --name <model_name>
 
 ## Testing
 
-To run the provided unit tests execute the provided test driver test.sh
+To run the provided unit tests execute the following command.
 ```shell
 $ ./test.sh
 ```
