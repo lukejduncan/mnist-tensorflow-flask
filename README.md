@@ -63,7 +63,7 @@ find the visualization of the model at `model/<model_name>/model.png`.  An examp
 
 To retrain run:
 ```shell
-$ python train --name <model_name>
+$ python train.py --name <model_name>
 ```
 
 ## Testing
