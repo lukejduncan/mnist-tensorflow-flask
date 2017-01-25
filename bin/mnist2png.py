@@ -12,7 +12,6 @@ output_path = sys.argv[2]
 
 digits = idx2numpy.convert_from_file(input_path)
 
-# png doesn't support 3d arrays so loop
 count, _, _ = digits.shape
 
 for i in range(count):
