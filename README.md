@@ -65,7 +65,7 @@ $ curl -X POST -F 'file=@digits_test_sample_0.png' localhost:5000/mnist/classify
 
 Or if you prefer you can directly query it with curl.  The API expects 
 a POST to /mnist/classify with a param named `img` that is a csv of a flattened mnist compatible
-image.  Fair warning, the code below is > 784 characters and srolls far to the right in github.
+image.  Fair warning, the code below is > 784 characters and scrolls far to the right in github.
 
 The following command shows a classification for the first image in the mnist test set.
 
