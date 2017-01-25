@@ -18,12 +18,12 @@ def allowed_file(filename):
 @app.route('/mnist/classify', methods=['POST'])
 def classify():
   if 'file' not in request.files:
-    abort(401)
+    abort(404)
 
   file = request.files['file']
 
   if not allowed_file(file.filename):
-    abort(402)
+    abort(404)
 
   #in_memory_file = io.BytesIO()
   #file.save(in_memory_file)
@@ -32,7 +32,7 @@ def classify():
   
   (row, col) = img.shape
   if row*col != 784:
-    abort(403)
+    abort(404)
 
   img = img.reshape(1,784)
 
