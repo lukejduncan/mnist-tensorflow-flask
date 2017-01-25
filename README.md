@@ -4,7 +4,7 @@ This project provides a simple MNIST classifer using TensorFlow and served via a
 Flask webapp.
 
 This is a linear softmax classifer very similar to the TensorFlow simple tutorial.  There are some
-differences.  For example, the code is organized for re-use and with the intention that a framework
+differences.  For example, the code is organized for reuse and with the intention that a framework
 exists for writing different types of classifiers and allowing clients to swap them in seamlessly.
 
 Additional tools are provided for visualizing the mnist dataset, visualizing the learned model, retraining
