@@ -13,6 +13,13 @@ models, and simple querying of the HTTP end-point.
 ## Quick Start
 In the repo is a pre-trained model that is ready for immediate use.  To do so you need to do a environment setup.
 
+### Install python-dev and python-tk
+Use the package manager appropriate for your system.  For example, Ubuntu uses Apt and the command would look like:
+```shell
+$ sudo apt-get install python-dev
+$ sudo apt-get install python-tk
+```
+
 ### Download the mnist data
 ```shell
 $ ./setup.sh
